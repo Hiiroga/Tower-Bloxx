@@ -1,0 +1,100 @@
+[gd_scene load_steps=9 format=3 uid="uid://dajd0qli5mb14"]
+
+[ext_resource type="Script" path="res://Scene/GameOver_Scene/game_over.gd" id="1_xekk4"]
+[ext_resource type="Texture2D" uid="uid://damqs5nhfd8in" path="res://Scene/HealthUI_Scene/Border finish.png" id="3_1067t"]
+[ext_resource type="Texture2D" uid="uid://8xbvh25jr06n" path="res://Scene/HealthUI_Scene/You lose!.png" id="3_a4x0d"]
+[ext_resource type="Texture2D" uid="uid://xxfvvwh1kcdd" path="res://Scene/HealthUI_Scene/Restart.png" id="4_3tnce"]
+[ext_resource type="Texture2D" uid="uid://dvbxpu74ew2aq" path="res://Scene/HealthUI_Scene/menu.png" id="5_21vfj"]
+[ext_resource type="FontFile" uid="uid://becb8yhb46wnt" path="res://Asset_Source/UI/TT Rounds Neue Trial Bold.ttf" id="6_dwrv7"]
+[ext_resource type="Script" path="res://Scene/GameOver_Scene/lose_score.gd" id="8_0ca2o"]
+[ext_resource type="Script" path="res://Scene/GameOver_Scene/height_label.gd" id="8_injjj"]
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xekk4")
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -6.0
+offset_top = -5.0
+offset_right = 34.0
+offset_bottom = 35.0
+scale = Vector2(29.8871, 17.9106)
+color = Color(0.0745098, 0.0745098, 0.0745098, 0.356863)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.116319
+anchor_top = 0.0447531
+anchor_right = 0.116319
+anchor_bottom = 0.0447531
+offset_left = 24.0
+offset_top = 16.0
+offset_right = 1131.0
+offset_bottom = 625.0
+scale = Vector2(0.717862, 0.716876)
+texture = ExtResource("3_1067t")
+metadata/_edit_use_anchors_ = true
+
+[node name="You Lose" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 261.0
+offset_top = 97.0
+offset_right = 1153.0
+offset_bottom = 222.0
+scale = Vector2(0.684552, 0.819561)
+texture = ExtResource("3_a4x0d")
+
+[node name="Restart" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 261.0
+offset_top = 533.0
+offset_right = 551.0
+offset_bottom = 699.0
+scale = Vector2(0.556, 0.586)
+texture_normal = ExtResource("4_3tnce")
+
+[node name="Menu" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 675.0
+offset_top = 533.0
+offset_right = 965.0
+offset_bottom = 699.0
+scale = Vector2(0.556, 0.586)
+texture_normal = ExtResource("5_21vfj")
+
+[node name="Height_Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 211.0
+offset_top = 309.0
+offset_right = 347.0
+offset_bottom = 338.0
+scale = Vector2(4.25134, 6.05961)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_dwrv7")
+theme_override_font_sizes/font_size = 17
+text = "Tower Height :"
+script = ExtResource("8_injjj")
+
+[node name="Lose_Score" type="Label" parent="."]
+layout_mode = 0
+offset_left = 211.0
+offset_top = 209.0
+offset_right = 346.0
+offset_bottom = 238.0
+scale = Vector2(4.25134, 6.05961)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_dwrv7")
+theme_override_font_sizes/font_size = 17
+text = "SCOre :"
+script = ExtResource("8_0ca2o")
+
+[connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="Menu" to="." method="_on_menu_pressed"]

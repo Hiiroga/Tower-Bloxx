@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://dh4cbwlip6j3h"]
+
+[ext_resource type="Script" path="res://Script/Block_Mechanic/block_hijau.gd" id="1_m1rij"]
+[ext_resource type="PackedScene" uid="uid://cbwmoos6stajp" path="res://Asset_Source/Blocks/blok hijau.glb" id="1_pmxuf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t6qrw"]
+size = Vector3(2.52295, 2.07043, 3.64893)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e0yqe"]
+size = Vector3(2.46602, 0.324707, 3.73141)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5nijb"]
+size = Vector3(2.02539, 1, 3.71296)
+
+[node name="Block_Hijau" type="RigidBody3D"]
+transform = Transform3D(0.0497737, 0, -0.998761, 0, 1, 0, 0.998761, 0, 0.0497737, -0.1616, -0.377833, -0.602769)
+mass = 100.0
+lock_rotation = true
+script = ExtResource("1_m1rij")
+
+[node name="blok hijau" parent="." instance=ExtResource("1_pmxuf")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.336001, 0, -0.0669827)
+
+[node name="Collision_Body" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.337158, 1.0965, -0.0280762)
+shape = SubResource("BoxShape3D_t6qrw")
+
+[node name="Down_Area" type="Area3D" parent="."]
+transform = Transform3D(1, 0, -3.72529e-09, 0, 1, 0, 3.72529e-09, 0, 1, -0.00371641, -1.76499, -0.2945)
+
+[node name="Score_Point_Down" type="CollisionShape3D" parent="Down_Area"]
+transform = Transform3D(1, 0, 7.45058e-09, 0, 1, 0, -7.45058e-09, 0, 1, 0.327122, 1.54686, 0.269283)
+shape = SubResource("BoxShape3D_e0yqe")
+
+[node name="Miss_Area" type="Area3D" parent="."]
+
+[node name="Miss_Point_A" type="CollisionShape3D" parent="Miss_Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.541673, 0.0146, -7.35596)
+shape = SubResource("BoxShape3D_5nijb")
+
+[node name="Miss_Point_B" type="CollisionShape3D" parent="Miss_Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.312408, 0.0146, 6.88333)
+shape = SubResource("BoxShape3D_5nijb")
+
+[connection signal="body_entered" from="Down_Area" to="." method="_on_down_area_body_entered"]
+[connection signal="body_entered" from="Miss_Area" to="." method="_on_miss_area_body_entered"]

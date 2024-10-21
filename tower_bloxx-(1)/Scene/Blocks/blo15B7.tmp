@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://yc5b8f6wramg"]
+
+[ext_resource type="Script" path="res://Script/Block_Mechanic/block_biru.gd" id="1_pxtqe"]
+[ext_resource type="PackedScene" uid="uid://bxv4wc4kpvbyi" path="res://Asset_Source/Blocks/blok biru.glb" id="1_usi4i"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gsyv7"]
+size = Vector3(2.38318, 2.0712, 2.31409)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j3ayt"]
+size = Vector3(2.3766, 0.324707, 2.31055)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_qdfma"]
+height = 2.1553
+radius = 0.405745
+
+[node name="Block_Biru" type="RigidBody3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.248775, 0, -0.335259)
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+mass = 100.0
+script = ExtResource("1_pxtqe")
+
+[node name="blok biru" parent="." instance=ExtResource("1_usi4i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.409841, 0, 0.294912)
+
+[node name="Collision_Body" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.361267, 0.999039, 0.292053)
+shape = SubResource("BoxShape3D_gsyv7")
+
+[node name="Upper_Area" type="Area3D" parent="."]
+
+[node name="Score_Point_Upper" type="CollisionShape3D" parent="Upper_Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.358098, 1.88444, 0.286133)
+shape = SubResource("BoxShape3D_j3ayt")
+
+[node name="Down_Area" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.76499, 0)
+
+[node name="Score_Point_Down" type="CollisionShape3D" parent="Down_Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.358098, 1.88444, 0.286133)
+shape = SubResource("BoxShape3D_j3ayt")
+
+[node name="Perfect_Area" type="Area3D" parent="."]
+
+[node name="Perfect_Point" type="CollisionShape3D" parent="Perfect_Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.423143, 0.986987, 0.261117)
+shape = SubResource("CylinderShape3D_qdfma")
+
+[connection signal="body_entered" from="Upper_Area" to="." method="_on_upper_area_body_entered"]
+[connection signal="body_entered" from="Down_Area" to="." method="_on_upper_area_body_entered"]

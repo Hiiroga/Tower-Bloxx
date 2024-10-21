@@ -1,0 +1,62 @@
+[gd_scene load_steps=8 format=3 uid="uid://bwmbllxqfl6lt"]
+
+[ext_resource type="Script" path="res://Script/Game_Mechanic/Level_Mechanic/level.gd" id="1_mmfg3"]
+[ext_resource type="PackedScene" uid="uid://brcxw4a6ql8hu" path="res://Scene/Crane/crane.tscn" id="2_2wi6a"]
+[ext_resource type="Script" path="res://Script/Game_Mechanic/Score/Score_Label.gd" id="3_j8gmq"]
+[ext_resource type="Script" path="res://Script/Game_Mechanic/Score/Multiplier_Label.gd" id="4_l6tib"]
+[ext_resource type="Script" path="res://Script/Game_Mechanic/Score/Stack_Label.gd" id="5_kh7vt"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_7jcf1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7yy83"]
+size = Vector3(11.4439, 0.67334, 11.4473)
+
+[node name="Level" type="Node3D"]
+script = ExtResource("1_mmfg3")
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(11.5866, 0, 0, 0, 0.600583, 0, 0, 0, 11.3489, 0, 0, 0)
+mesh = SubResource("BoxMesh_7jcf1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0403748, 0.00317383, 0.0234375)
+shape = SubResource("BoxShape3D_7yy83")
+
+[node name="Light" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.611417, 0.791309, 0, -0.791309, -0.611417, 0, 7.67745, -5.11477)
+
+[node name="Crane" parent="." instance=ExtResource("2_2wi6a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0575506, 10.1673, -1.52269)
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Score_Label" type="Label" parent="HUD"]
+offset_right = 336.0
+offset_bottom = 52.0
+theme_override_font_sizes/font_size = 32
+text = "Score"
+script = ExtResource("3_j8gmq")
+
+[node name="Multiplier_Label" type="Label" parent="HUD"]
+offset_top = 48.0
+offset_right = 151.0
+offset_bottom = 93.0
+theme_override_font_sizes/font_size = 32
+text = "Multiplier"
+script = ExtResource("4_l6tib")
+
+[node name="Stack_Label" type="Label" parent="HUD"]
+offset_top = 92.0
+offset_right = 84.0
+offset_bottom = 137.0
+theme_override_font_sizes/font_size = 32
+text = "Stack"
+script = ExtResource("5_kh7vt")
+
+[node name="Timer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 10.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

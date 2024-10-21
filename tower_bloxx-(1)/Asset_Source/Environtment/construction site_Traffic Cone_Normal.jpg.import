@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://b2u240pyh8tmc"
+path.s3tc="res://.godot/imported/construction site_Traffic Cone_Normal.jpg-8a44f853073b589a875db6da5c544916.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "050acb2f74a6220399e8994e9455d39c"
+}
+
+[deps]
+
+source_file="res://Asset_Source/Environtment/construction site_Traffic Cone_Normal.jpg"
+dest_files=["res://.godot/imported/construction site_Traffic Cone_Normal.jpg-8a44f853073b589a875db6da5c544916.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=1
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=1
+roughness/src_normal="res://Asset_Source/Environtment/construction site_Traffic Cone_Normal.jpg"
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

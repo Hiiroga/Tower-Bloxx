@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://dpmhsxg4h3slu"]
+
+[ext_resource type="Texture2D" uid="uid://cko48ssibvhvp" path="res://awan 2 (3424 x 1920 piksel).png" id="1_i2gw2"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_d16dy"]
+panorama = ExtResource("1_i2gw2")
+filter = false
+
+[sub_resource type="Sky" id="Sky_5x3u4"]
+sky_material = SubResource("PanoramaSkyMaterial_d16dy")
+process_mode = 3
+radiance_size = 1
+
+[sub_resource type="Environment" id="Environment_1pmup"]
+background_mode = 2
+sky = SubResource("Sky_5x3u4")
+sky_rotation = Vector3(0, -6.28319, 0)
+ambient_light_source = 3
+ambient_light_color = Color(0.0295066, 0.0295066, 0.0295066, 1)
+reflected_light_source = 2
+adjustment_enabled = true
+
+[node name="Sky" type="WorldEnvironment"]
+environment = SubResource("Environment_1pmup")

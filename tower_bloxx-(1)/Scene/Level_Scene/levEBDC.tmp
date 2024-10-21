@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://bwmbllxqfl6lt"]
+
+[ext_resource type="PackedScene" uid="uid://x77qem3gqkux" path="res://Scene/Blocks/Block_Dasar.tscn" id="1_h1xyt"]
+[ext_resource type="PackedScene" uid="uid://brcxw4a6ql8hu" path="res://Scene/Crane/crane.tscn" id="2_2wi6a"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_7jcf1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7yy83"]
+size = Vector3(11.4439, 0.67334, 11.4473)
+
+[node name="Level" type="Node3D"]
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(11.5866, 0, 0, 0, 0.600583, 0, 0, 0, 11.3489, 0, 0, 0)
+mesh = SubResource("BoxMesh_7jcf1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0403748, 0.00317383, 0.0234375)
+shape = SubResource("BoxShape3D_7yy83")
+
+[node name="Light" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.611417, 0.791309, 0, -0.791309, -0.611417, 0, 7.67745, -5.11477)
+
+[node name="Blocks" type="Node3D" parent="."]
+
+[node name="Block_Dasar" parent="." instance=ExtResource("1_h1xyt")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.0580921, 0.309368, -0.559141)
+
+[node name="Crane" parent="." instance=ExtResource("2_2wi6a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.458519, 13.0363, -0.841349)
+axis_lock_linear_x = true
+axis_lock_linear_y = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true

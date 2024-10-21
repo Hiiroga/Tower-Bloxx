@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=3 uid="uid://brcxw4a6ql8hu"]
+
+[ext_resource type="Script" path="res://Script/Crane_Mechanic/crane_mechanic.gd" id="1_hwvme"]
+[ext_resource type="PackedScene" uid="uid://btgbsbmilm023" path="res://Asset_Source/Crane/crane.glb" id="1_p1k7v"]
+[ext_resource type="PackedScene" uid="uid://x77qem3gqkux" path="res://Scene/Blocks/Block_Dasar.tscn" id="3_mrgwj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vo0kn"]
+vertex_color_is_srgb = true
+albedo_color = Color(0, 0, 0, 1)
+backlight_enabled = true
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_v6xu4"]
+
+[node name="Crane" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.73143, 0)
+script = ExtResource("1_hwvme")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-1, 0, -8.7423e-08, 0, 1, 0, 8.7423e-08, 0, -1, 0, -3.63078, -6.80668)
+v_offset = -2.2
+fov = 90.0
+
+[node name="Crane_Body" type="RigidBody3D" parent="."]
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+
+[node name="crane" parent="Crane_Body" instance=ExtResource("1_p1k7v")]
+transform = Transform3D(-0.0023659, 0, -0.21414, 0, 0.214153, 0, 0.21414, 0, -0.0023659, -0.119583, -0.931582, 0.253947)
+
+[node name="Crane_Collision_Body" type="CollisionPolygon3D" parent="Crane_Body"]
+transform = Transform3D(-0.21414, 0, 0.00236591, 0, 0.214153, 0, -0.00236591, 0, -0.21414, -0.184781, -0.93576, 0.255177)
+depth = 0.95
+polygon = PackedVector2Array(-0.737086, 4.18891, -0.737086, 3.14851, -0.462535, 2.0503, -0.437751, 1.92267, 0.35001, 1.31161, 0.87273, 0.928769, 1.04942, 0.523845, 1.09748, -0.148251, 0.448556, -0.938196, -0.00592256, -1.12174, -0.495361, -1.10426, -0.888659, -0.946936, -1.34314, -0.387578, -1.50046, 0.0669007, -1.82384, 0.21548, -2.42689, 0.0406806, -2.54051, -0.308918, -2.42689, -0.973156, -1.48298, -2.01321, -0.899538, -2.2226, 0.27562, -2.25932, 0.875441, -1.94105, 1.79353, -1.19433, 1.98939, -0.4721, 2.08732, 0.678577, 1.73233, 1.26616, 0.777511, 2.17201, 0.410274, 2.4658, 0.226655, 3.05338, 0.238897, 4.10612)
+
+[node name="Rope" type="MeshInstance3D" parent="Crane_Body"]
+transform = Transform3D(0.172237, 0, 0, 0, 1.86581, 0, 0, 0, 0.203359, -0.123971, 1.91448, 0.243244)
+material_override = SubResource("StandardMaterial3D_vo0kn")
+mesh = SubResource("CylinderMesh_v6xu4")
+
+[node name="Blocks" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.161182, -1.67507, 0.29486)
+
+[node name="Block_Dasar" parent="Blocks" instance=ExtResource("3_mrgwj")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.0286269, -0.990146, 0.122354)
+
+[node name="Joint" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.13368, -1.33754, 0.218798)
+
+[node name="Generic6DOFJoint3D" type="Generic6DOFJoint3D" parent="Joint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0451084, 0.0111078, 0)
+node_a = NodePath("../../Crane_Body")
+node_b = NodePath("../../Blocks/Block_Dasar")
+
+[node name="Timer" type="Timer" parent="."]
+process_callback = 0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

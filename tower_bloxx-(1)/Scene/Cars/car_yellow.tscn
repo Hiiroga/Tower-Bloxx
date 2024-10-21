@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://xunkayf5x3ii"]
+
+[ext_resource type="PackedScene" uid="uid://ni71ce0x8oml" path="res://Asset_Source/Environtment/Cars/car yellow.fbx" id="1_126xc"]
+[ext_resource type="Script" path="res://Script/Game_Mechanic/Cars/cars.gd" id="1_ekimf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lrta6"]
+size = Vector3(4.34768, 3.74539, 11.2386)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m6mhg"]
+size = Vector3(4.20508, 3.72986, 0.584961)
+
+[node name="Car_Yellow" type="RigidBody3D"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+axis_lock_linear_x = true
+axis_lock_linear_y = true
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+mass = 200.0
+script = ExtResource("1_ekimf")
+
+[node name="car yellow" parent="." instance=ExtResource("1_126xc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.573576, 0, 0.206503)
+
+[node name="Car_Shape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.572773, 1.51066, 0.380214)
+shape = SubResource("BoxShape3D_lrta6")
+
+[node name="Hit_Area" type="Area3D" parent="."]
+
+[node name="Hit_Shape" type="CollisionShape3D" parent="Hit_Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.520752, 1.55019, 6.30615)
+shape = SubResource("BoxShape3D_m6mhg")
+
+[connection signal="body_entered" from="Hit_Area" to="." method="_on_hit_area_body_entered"]

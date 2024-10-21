@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://beu5ck3ket1c2"]
+
+[ext_resource type="Script" path="res://Script/Game_Mechanic/Spawner/car_spawner.gd" id="1_58tu5"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_igv0d"]
+
+[node name="Car_Spawner" type="Node3D"]
+transform = Transform3D(0.37, 0, 0, 0, 0.37, 0, 0, 0, 0.37, 0, 0, 0)
+script = ExtResource("1_58tu5")
+
+[node name="Timer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 18.0
+autostart = true
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_igv0d")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

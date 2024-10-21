@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://dns4h3j3mjtpr"]
+
+[ext_resource type="Script" path="res://Script/Block_Mechanic/block_kuning.gd" id="1_4riy4"]
+[ext_resource type="PackedScene" uid="uid://bhvvjokvf8a1" path="res://Asset_Source/Blocks/blok kuning.glb" id="1_iutdn"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fx5m5"]
+size = Vector3(3.08893, 2.10101, 2.67097)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dmg3o"]
+size = Vector3(3.11759, 0.324707, 2.70068)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_l3856"]
+size = Vector3(3.95155, 1, 2.46933)
+
+[node name="Block_Kuning" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.272029, 0.037951, -0.00160193)
+mass = 100.0
+lock_rotation = true
+script = ExtResource("1_4riy4")
+
+[node name="blok kuning" parent="." instance=ExtResource("1_iutdn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.228539, 0, 0.0106456)
+
+[node name="Collision_Body" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.235504, 0.958466, 0.0113449)
+shape = SubResource("BoxShape3D_fx5m5")
+
+[node name="Down_Area" type="Area3D" parent="."]
+transform = Transform3D(1, 0, -3.72529e-09, 0, 1, 0, 3.72529e-09, 0, 1, -0.00371641, -1.76499, -0.2945)
+
+[node name="Score_Point_Down" type="CollisionShape3D" parent="Down_Area"]
+transform = Transform3D(1, 0, 7.45058e-09, 0, 1, 0, -7.45058e-09, 0, 1, 0.23264, 1.49244, 0.319581)
+shape = SubResource("BoxShape3D_dmg3o")
+
+[node name="Miss_Area" type="Area3D" parent="."]
+
+[node name="Miss_Point_A" type="CollisionShape3D" parent="Miss_Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.47891, 0.015, -0.149776)
+shape = SubResource("BoxShape3D_l3856")
+
+[node name="Miss_Point_B" type="CollisionShape3D" parent="Miss_Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.55993, 0.0146, -0.226144)
+shape = SubResource("BoxShape3D_l3856")
+
+[connection signal="body_entered" from="Down_Area" to="." method="_on_down_area_body_entered"]
+[connection signal="body_entered" from="Miss_Area" to="." method="_on_miss_area_body_entered"]

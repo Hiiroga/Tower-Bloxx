@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://brcxw4a6ql8hu"]
+
+[ext_resource type="Script" path="res://Script/Crane_Mechanic/crane_mechanic.gd" id="1_hwvme"]
+[ext_resource type="PackedScene" uid="uid://btgbsbmilm023" path="res://Asset_Source/Crane/crane.glb" id="1_p1k7v"]
+
+[node name="Crane" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.73143, 0)
+axis_lock_linear_z = true
+axis_lock_angular_z = true
+gravity_scale = 0.0
+linear_damp = 10.0
+angular_damp = 10.0
+script = ExtResource("1_hwvme")
+
+[node name="crane" parent="." instance=ExtResource("1_p1k7v")]
+transform = Transform3D(-9.36091e-09, 0, 0.214153, 0, 0.214153, 0, -0.214153, 0, -9.36091e-09, -0.184772, -0.931582, 0.255537)
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="."]
+transform = Transform3D(0.214153, 0, 0, 0, 0.214153, 0, 0, 0, 0.214153, -0.119592, -0.93576, 0.253587)
+depth = 0.95
+polygon = PackedVector2Array(-0.737086, 4.18891, -0.737086, 3.14851, -0.462535, 2.0503, -0.437751, 1.92267, 0.35001, 1.31161, 0.87273, 0.928769, 1.04942, 0.523845, 1.09748, -0.148251, 0.448556, -0.938196, -0.00592256, -1.12174, -0.495361, -1.10426, -0.888659, -0.946936, -1.34314, -0.387578, -1.50046, 0.0669007, -1.82384, 0.21548, -2.42689, 0.0406806, -2.54051, -0.308918, -2.42689, -0.973156, -1.48298, -2.01321, -0.899538, -2.2226, 0.27562, -2.25932, 0.875441, -1.94105, 1.79353, -1.19433, 1.98939, -0.4721, 2.08732, 0.678577, 1.73233, 1.26616, 0.777511, 2.17201, 0.410274, 2.4658, 0.226655, 3.05338, 0.238897, 4.10612)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-1, 8.74228e-08, 5.0822e-21, 8.74228e-08, 1, 8.74228e-08, 7.64274e-15, 8.74228e-08, -1, 0, -1.42735, -6.80668)
+fov = 90.0

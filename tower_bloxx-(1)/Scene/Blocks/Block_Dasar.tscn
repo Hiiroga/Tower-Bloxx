@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://x77qem3gqkux"]
+
+[ext_resource type="PackedScene" uid="uid://b6007601ad73u" path="res://Asset_Source/Blocks/blok dasar.glb" id="1_ip5j7"]
+[ext_resource type="Script" path="res://Script/Block_Mechanic/Block_Dasar.gd" id="1_xfkmx"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_m874b"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bbms8"]
+size = Vector3(2.2959, 2.04953, 2.34671)
+
+[sub_resource type="GDScript" id="GDScript_dvogn"]
+script/source = "extends Area3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta: float) -> void:
+	pass
+"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_crtf3"]
+size = Vector3(2.409, 0.324707, 2.3418)
+
+[node name="Block_Dasar" type="RigidBody3D"]
+transform = Transform3D(0.99992, 0, -0.0126184, 0, 1, 0, 0.0126184, 0, 0.99992, 0, 0, 0)
+axis_lock_linear_x = true
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+mass = 100.0
+physics_material_override = SubResource("PhysicsMaterial_m874b")
+lock_rotation = true
+script = ExtResource("1_xfkmx")
+
+[node name="blok dasar" parent="." instance=ExtResource("1_ip5j7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.363618, 0, -0.0257227)
+
+[node name="Collision_Body" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, -9.31323e-10, 0, 1, 0, 9.31323e-10, 0, 1, 0.343262, 1.0125, -0.0258331)
+shape = SubResource("BoxShape3D_bbms8")
+
+[node name="Down_Area" type="Area3D" parent="."]
+transform = Transform3D(1, 0, -3.72529e-09, 0, 1, 0, 3.72529e-09, 0, 1, -0.00371641, -1.76499, -0.2945)
+script = SubResource("GDScript_dvogn")
+
+[node name="Score_Point_Down" type="CollisionShape3D" parent="Down_Area"]
+transform = Transform3D(1, 0, 7.45058e-09, 0, 1, 0, -7.45058e-09, 0, 1, 0.341896, 1.88444, 0.270509)
+shape = SubResource("BoxShape3D_crtf3")
+
+[connection signal="body_entered" from="Down_Area" to="." method="_on_down_area_body_entered"]
